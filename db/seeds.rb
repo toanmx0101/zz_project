@@ -15,7 +15,7 @@ Rails.logger.info('Category and Product Seed')
     product.save
   end
 end
-Rails.logger.infor('End Seed')
+Rails.logger.info('End Seed')
 
 User.create email: 'zinza1@gmail.com', password: 'zinza123@', password_confirmation: 'zinza123@'
 User.create email: 'zinza2@gmail.com', password: 'zinza123@', password_confirmation: 'zinza123@'

@@ -14,8 +14,11 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    binding.pry
-    @order = current_user.orders.build(order_params)
+    order_details = {}
+    params[:order_details].each_pair do |key, value|
+      order_details[key.to_i] = value.to_i
+    end
+    @order = Order.new(user_id: current_user.id, order_details: order_details)
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
