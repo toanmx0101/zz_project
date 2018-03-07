@@ -1,17 +1,40 @@
 <%= form_with(model: order, local: true) do |form| %>
-  <% if order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
-      <ul>
-      <% order.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="actions">
-    <%= form.submit %>
+    <button onclick="checkoutUserCart(event)">Checkout</button>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  function generateOrderParams() {
+    var orderParams = {};
+    if (!$.isEmptyObject($.cookie("cart"))) {
+      var cartObj = JSON.parse($.cookie("cart"));
+      if (!$.isEmptyObject(cartObj)) {
+        if (!$.isEmptyObject(cartObj.cart)) {
+          for (i in cartObj.cart) {
+            orderParams[cartObj.cart[i].id] = cartObj.cart[i].product.qty
+          }
+        }
+      }
+    }
+    return orderParams;
+  }
+  function checkoutUserCart(event) {
+    event.preventDefault();
+    console.log("checkout");
+    $.ajax({
+      headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+      type: 'POST',
+      url: '/orders',
+      dataType: 'json',
+      data: {
+        order: {
+          order_details: generateOrderParams()
+        }
+      },
+      success: function(resultsHtml) {
+                
+      }
+    });
+  }
+</script>

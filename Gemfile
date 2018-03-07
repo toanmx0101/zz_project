@@ -17,11 +17,18 @@ gem 'jbuilder', '~> 2.5'
 gem 'hirb'
 gem 'rubocop'
 gem 'devise'
+gem 'carrierwave'
+gem 'pry'
+gem 'kaminari'
+gem 'ransack'
+gem 'font-awesome-rails'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'annotate'
 end
 
 group :development do

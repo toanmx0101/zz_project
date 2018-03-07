@@ -1,0 +1,26 @@
+<%= form_tag search_products_path, method: 'get' do %>
+  <%= text_field_tag :q, params[:q], placeholder: 'Search product' %>
+  <%= submit_tag "Search" %>
+<% end %>
+<div class="container">
+  <div class="c-search-results">
+    <div class="r-header">
+      <span>Name</span>
+      <span>Price</span>
+      <span>Description</span>
+    </div>
+    <div class="r-content">
+      <div class="content">
+        <% @products.each do |product| %>
+          <div class="product">
+            <span><%= product.name %></span>
+            <span><%= product.price %></span>
+            <span><%= product.description %></span>
+            <button>Order</button>
+          </div>
+        <% end %>
+        <%= paginate @products %>
+      </div>
+    </div>
+  </div>
+</div>

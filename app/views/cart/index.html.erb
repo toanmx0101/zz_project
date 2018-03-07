@@ -1,0 +1,60 @@
+
+<div class="container">
+  <h3>Cac san pham trong gio hang</h3>
+  <%= link_to 'Back', :back %>
+  <div class="c-cart"> 
+    <div class="cart-header">
+      <div>Product name</div>
+      <div>Quantity</div>
+      <div>Total price</div>
+    </div>
+    <div class="cart-list-item">
+    </div>
+  </div>
+  <h3 class="total-price">Total: 0</h3>
+  <%= render 'orders/form', order: Order.new %>
+</div> 
+
+<script type="text/javascript">
+  if (!$.isEmptyObject($.cookie("cart"))) {
+    var cartObj = JSON.parse($.cookie("cart"));
+    if (!$.isEmptyObject(cartObj)) {
+      if (!$.isEmptyObject(cartObj.cart)) {
+        
+        var totalPrice = 0;
+        for (i in cartObj.cart) {
+          var productId = cartObj.cart[i].id;
+          var product = cartObj.cart[i].product;
+          totalPrice += product.price * product.qty;
+          $(".cart-list-item").append(
+            "<div><div>" + product.name + "</div> <div>" + 
+            product.qty + "</div> <div>" + 
+            (product.price*product.qty) + "</div><button class='js-delete-btn' value='" + productId + "' onClick='deleteItemInCart(this)'>Xoa</button></div>" );
+        }
+        $('.total-price').text("Total: " + totalPrice);
+      }
+    }
+  }
+  function deleteItemInCart(item) {
+    $(item).parent().hide();
+    var deleteProductId = item.value;
+    if (!$.isEmptyObject($.cookie("cart"))) {
+      var cartObj = JSON.parse($.cookie("cart"));
+      if (!$.isEmptyObject(cartObj)) {
+        if (!$.isEmptyObject(cartObj.cart)) {
+          cartObj.cart = cartObj.cart.filter(function(deleteItem) { 
+            return deleteItem.id !== deleteProductId;  
+          });
+          $.cookie( "cart", JSON.stringify( cartObj));
+          console.log(cartObj);
+        }
+        var totalPrice = 0;
+        for (i in cartObj.cart) {
+          totalPrice += product.price;
+        }
+        $('.total-price').text("Total: " + totalPrice);
+      }
+    }
+  }
+    
+</script>

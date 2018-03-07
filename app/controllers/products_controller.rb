@@ -4,7 +4,16 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @categories = Category.all
+    @products = Product.all.page(params[:page])
+    @products = @products.category(params[:category]) if params[:category].present?
+    if params[:sort_column].present? && Product.column_names.include?(params[:sort_column]) && (params[:sort_type] == 'DESC' || params[:sort_type] == 'ASC')
+      @products = @products.order("#{params[:sort_column]} #{params[:sort_type]}")
+    end
+  end
+
+  def search
+    @products = Product.where('name LIKE ?', '%' + params[:q] + '%').page(params[:page])
   end
 
   # GET /products/1

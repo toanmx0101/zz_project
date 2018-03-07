@@ -1,0 +1,57 @@
+body {
+  font-family: 'Montserrat', sans-serif;  
+}
+input {
+  padding: 9px 6px;
+  font-size: 19px;
+  line-height: 16px;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid #DDD;
+}
+
+.c-search-results {
+  padding: 20px; 
+  .r-header {
+    border-bottom: 1px solid;  
+  }
+  .r-header span , .product span{
+    display: inline-block;
+    padding: 12px;
+    border-radius: 4px;
+    width: 20%;
+    i {
+      float: right;
+      margin-left: 14px;
+    }
+  }
+  .r-header span {
+    cursor: pointer;
+    input {
+      background: #FFF;
+      border: none;
+    }
+  }
+  .price-sort {
+    background: #FFF;
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
+  }
+}
+.c-cart {
+  margin-top: 15px;
+  .cart-header {
+    display: flex;
+    div {
+      width: 400px;
+    }
+  }
+  .cart-list-item {
+    div {
+      display: flex;
+      margin-top: 4px;
+      div {
+        width: 400px;
+      }
+    }
+  }
+}

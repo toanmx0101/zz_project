@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  resource :products
-  resource :categories
-  resource :orders
+  resources :products do
+    collection do
+      get 'search'
+    end
+  end
+  resources :orders, except: [:edit, :new]
+  root to: 'home#home'
+  resources :cart, only: :index 
 end
