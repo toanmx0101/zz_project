@@ -55,3 +55,12 @@ input {
     }
   }
 }
+.orders-header, .order-item {
+  display: flex;
+  div {
+    width: 15%;
+  }
+}
+.order-item {
+  margin-top: 10px;
+}

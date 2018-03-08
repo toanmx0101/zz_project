@@ -1,0 +1,41 @@
+= form_with(model: order, local: true) do |form|
+  .actions
+    %button{:onclick => "checkoutUserCart(event)"} Checkout
+:javascript
+  function generateOrderParams() {
+    var orderParams = {};
+    if (!$.isEmptyObject($.cookie("cart"))) {
+      var cartObj = JSON.parse($.cookie("cart"));
+      if (!$.isEmptyObject(cartObj)) {
+        if (!$.isEmptyObject(cartObj.cart)) {
+          for (i in cartObj.cart) {
+            orderParams[cartObj.cart[i].id] = cartObj.cart[i].product.qty
+          }
+        }
+      }
+    }
+    return orderParams;
+  }
+  function checkoutUserCart(event) {
+    event.preventDefault();
+    console.log("checkout");
+    $.ajax({
+      headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+      type: 'POST',
+      url: '/orders',
+      dataType: 'json',
+      data: {
+        order: 1,
+        order_details: generateOrderParams()
+      },
+      success: function(resultsHtml) {
+        $.removeCookie('cart');
+        $('.cart-list-item').empty();
+        $('.total-price').text("Total: 0");
+        alert("Don hang cua ban da duoc gui len he thong! Vui long kiem tra email!");
+      },
+      error: function () {
+        alert("Don hang cua ban chua duoc gui len he thong! Vui long thu lai");
+      }
+    });
+  }

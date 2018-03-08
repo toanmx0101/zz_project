@@ -1,0 +1,25 @@
+%p#notice= notice
+- if @order.nil?
+  %h3 Don hang nay khong phai cua ban!
+- else
+  %h2 Don hang cua ban
+  %h3
+    Don hang so #{@order.id}
+  .c-cart
+    .cart-header
+      %div Product name
+      %div So luong
+      %div Gia
+      %div Thanh tien
+    .cart-list-item
+      - total_price = 0
+      - @products.each do |product|
+        %div
+          %div= product.name
+          %div= @order.order_details[product.id]
+          %div= product.price
+          %div= product.price * @order.order_details[product.id]
+        - total_price += product.price * @order.order_details[product.id]
+  %h3.total-price
+    Tong tien: #{total_price}
+= link_to 'Back', orders_path

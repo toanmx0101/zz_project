@@ -1,0 +1,18 @@
+= form_tag search_products_path, method: 'get' do
+  = text_field_tag :q, params[:q], placeholder: 'Search product'
+  = submit_tag "Search"
+.container
+  .c-search-results
+    .r-header
+      %span Name
+      %span Price
+      %span Description
+    .r-content
+      .content
+        - @products.each do |product|
+          .product
+            %span= product.name
+            %span= product.price
+            %span= product.description
+            %button Order
+        = paginate @products

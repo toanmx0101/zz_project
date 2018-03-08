@@ -7,9 +7,8 @@ class ProductsController < ApplicationController
     @categories = Category.all
     @products = Product.all.page(params[:page])
     @products = @products.category(params[:category]) if params[:category].present?
-    if params[:sort_column].present? && Product.column_names.include?(params[:sort_column]) && (params[:sort_type] == 'DESC' || params[:sort_type] == 'ASC')
-      @products = @products.order("#{params[:sort_column]} #{params[:sort_type]}")
-    end
+    return unless params[:sort_column].present? && Product.column_names.include?(params[:sort_column]) && (params[:sort_type] == 'DESC' || params[:sort_type] == 'ASC')
+    @products = @products.order("#{params[:sort_column]} #{params[:sort_type]}")
   end
 
   def search

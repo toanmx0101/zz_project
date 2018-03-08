@@ -1,0 +1,13 @@
+%p#notice= notice
+%h1 Orders
+.container
+  .c-orders
+    .orders-header
+      %div Order ID
+      %div Order time
+    .orders-list
+      - @orders.each do |order|
+        .order-item
+          %div= order.id
+          %div= order.created_at.strftime("%B %e, %Y")
+          %div= link_to 'View details', order

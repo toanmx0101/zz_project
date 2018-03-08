@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+  root to: 'home#home'
   devise_for :users
-  resources :products do
+  resources :products, only: %i[show index] do
     collection do
       get 'search'
     end
   end
-  resources :orders, except: [:edit, :new]
-  root to: 'home#home'
-  resources :cart, only: :index 
+  resources :orders, except: %i[edit new]
+  resources :cart, only: :index
+  resources :categories, only: :index
 end

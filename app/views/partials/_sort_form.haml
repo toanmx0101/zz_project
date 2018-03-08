@@ -1,0 +1,16 @@
+%i.fa.fa-caret-down{"aria-hidden" => "true"}
+%div{:class => "#{sort_column}-sort", :style => "position: absolute; bottom: 0;height: 50px; background: #FFF;top: 44px;display: none;"}
+  - if sort_column == "price"
+    - submit_tag_higher = "Giá cao nhất"
+    - submit_tag_lower = "Giá thấp nhất"
+  - elsif sort_column == "created_at"
+    - submit_tag_higher = "Mới nhất"
+    - submit_tag_lower = "Cũ nhất"
+  = form_tag products_path, method: 'get' do
+    = hidden_field_tag 'sort_column', 'created_at'
+    = hidden_field_tag 'sort_type', 'ASC'
+    = submit_tag submit_tag_higher
+  = form_tag products_path, method: 'get' do
+    = hidden_field_tag 'sort_column', 'created_at'
+    = hidden_field_tag 'sort_type', 'DESC'
+    = submit_tag submit_tag_lower

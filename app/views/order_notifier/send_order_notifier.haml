@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1 Cam on ban da dat hang tu website cua chung toi!
+    %h3
+      Ma don hang: #{@order.id}
+    %p Don hang cua ban bao gom
+    %ul
+      - @products.each do |product|
+        %li
+          = product.name
+              #{@order.order_details[product.id]} items
+    %div= link_to 'View details my order', @order

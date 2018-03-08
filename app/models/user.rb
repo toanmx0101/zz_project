@@ -30,8 +30,6 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   validates_associated :orders
-  validates :email, presence: true, length: { maximum: 255 },
-    format: { with: Devise.email_regexp }, uniqueness: { case_sensitive: false }
-  validates :password, presence: true,
-    length: { within: Devise.password_length }, allow_nil: true
+  validates :email, presence: true, length: { maximum: 255 }, format: { with: Devise.email_regexp }, uniqueness: { case_sensitive: false }
+  validates :password, presence: true, length: { within: Devise.password_length }, allow_nil: true
 end

@@ -14,12 +14,11 @@
 class Product < ApplicationRecord
   belongs_to :category
 
-
   validates :name, presence: true, length: { maximum: 100 }, uniqueness: true
   validates :description, presence: true, length: { maximum: 1000 }
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :category_id, presence: true
 
-  scope :category, -> (category) {where(category_id: category)}
+  scope :category, ->(category) { where(category_id: category) }
   paginates_per 10
 end

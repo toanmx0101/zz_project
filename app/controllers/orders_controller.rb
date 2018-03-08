@@ -9,7 +9,9 @@ class OrdersController < ApplicationController
 
   # GET /orders/1
   # GET /orders/1.json
-  def show; end
+  def show
+    @products = Product.where(id: @order.order_details.keys) unless @order.nil?
+  end
 
   # POST /orders
   # POST /orders.json
@@ -21,6 +23,8 @@ class OrdersController < ApplicationController
     @order = Order.new(user_id: current_user.id, order_details: order_details)
     respond_to do |format|
       if @order.save
+        @products = Product.where(id: @order.order_details.keys)
+        OrderNotifier.send_order_notifier(current_user, @order, @products).deliver
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -44,7 +48,7 @@ class OrdersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_order
-    @order = Order.find(params[:id])
+    @order = current_user.orders.find params[:id] if current_user.orders.exists? params[:id]
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
