@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  layout  :application_layout
+  layout :application_layout
+
   private
 
   def account_update_params
@@ -8,6 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
   def application_layout
-  	user_signed_in? ? "application" : "signed_in_application"
+    user_signed_in? ? 'application' : 'signed_in_application'
   end
 end

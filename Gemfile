@@ -24,12 +24,15 @@ gem 'ransack'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'haml'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'annotate'
+  gem 'rspec-rails', '~> 3.7'
+  gem 'factory_bot_rails', '~> 4.0'
 end
 
 group :development do
