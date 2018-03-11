@@ -8,11 +8,11 @@ class ProductsController < ApplicationController
     @products = Product.all.page(params[:page])
     @products = @products.category(params[:category]) if params[:category].present?
     return unless params[:sort_column].present? && Product.column_names.include?(params[:sort_column]) && (params[:sort_type] == 'DESC' || params[:sort_type] == 'ASC')
-    @products = @products.order("#{params[:sort_column]} #{params[:sort_type]}")
+    @products = @products.order_by(params[:sort_column], params[:sort_type])
   end
 
   def search
-    @products = Product.where('name LIKE ?', '%' + params[:q] + '%').page(params[:page])
+    @products = Product.search_like(params[:q]).page(params[:page])
   end
 
   # GET /products/1
@@ -71,7 +71,10 @@ class ProductsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_product
-    @product = Product.find(params[:id])
+    @product = Product.find_by(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:notice] = 'Invalid product'
+    redirect_to action: 'index'
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

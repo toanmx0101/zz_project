@@ -20,5 +20,7 @@ class Product < ApplicationRecord
   validates :category_id, presence: true
 
   scope :category, ->(category) { where(category_id: category) }
+  scope :search_like, ->(q) { where('name LIKE ?', q) }
+  scope :order_by, ->(order_culumn, order_type) { reorder(order_culumn + ' ' + order_type) }
   paginates_per 10
 end

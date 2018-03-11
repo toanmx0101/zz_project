@@ -18,15 +18,15 @@ describe Order, type: :model do
   end
 
   it 'product_id is numeric in order details hash' do
-    order = Order.new(user_id: FactoryBot.create(:user).id, order_details: {"Example" => 2})
+    order = Order.new(user_id: FactoryBot.create(:user).id, order_details: { 'Example' => 2 })
     expect(order).to_not be_valid
   end
   it 'product quanity is numeric in order details hash' do
-    order = Order.new(user_id: FactoryBot.create(:user).id, order_details: {"Example" => "Z"})
+    order = Order.new(user_id: FactoryBot.create(:user).id, order_details: { 'Example' => 'Z' })
     expect(order).to_not be_valid
   end
   it 'order_details has product exists' do
-    order = Order.new(user_id: FactoryBot.create(:user).id, order_details: {1 => 2})
+    order = Order.new(user_id: FactoryBot.create(:user).id, order_details: { 1 => 2 })
     expect(order).to_not be_valid
   end
 end
