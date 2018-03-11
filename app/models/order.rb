@@ -12,12 +12,17 @@
 class Order < ApplicationRecord
   belongs_to :user
   validates :user_id, presence: true
+  validates :order_details, presence: true
   serialize :order_details
   validate :order_details_is_valid
 
   def order_details_is_valid
-    errors.add(:order_details, 'Product ID or Quantity is invalid') unless order_details.is_a?(Hash) || !order_details.keys.all? { |h| h.is_a?(Numeric) } || !order_details.values.all? { |h| h.is_a?(Numeric) }
-
-    errors.add(:order_details, 'Product doesn\'t exists') unless order_details.keys.all? { |h| Product.exists?(h) }
+    if !order_details.is_a?(Hash)
+      errors.add(:order_details, 'Order details is invalid')
+    elsif !order_details.keys.all? { |h| h.is_a?(Numeric) } || !order_details.values.all? { |h| h.is_a?(Numeric) }
+      errors.add(:order_details, 'Product ID or Quantity is invalid')
+    elsif !order_details.keys.all? { |h| Product.exists?(h) }
+      errors.add(:order_details, 'Product doesn\'t exists')
+    end
   end
 end

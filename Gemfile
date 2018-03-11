@@ -32,7 +32,8 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'annotate'
   gem 'rspec-rails', '~> 3.7'
-  gem 'factory_bot_rails', '~> 4.0'
+  gem 'factory_bot_rails', '~> 4.0', require: false
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
 end
 
 group :development do

@@ -5,15 +5,10 @@ describe Category, type: :model do
     expect(FactoryBot.build(:category)).to be_valid
   end
 
-  it 'is not valid without a name' do
-    expect(FactoryBot.build(:category, name: nil)).to_not be_valid
-  end
+  it { should validate_presence_of(:name) }
+  it { should validate_uniqueness_of(:name) }
+  it { should validate_length_of(:name).is_at_most(100) }
 
-  it 'is category name uniqueness' do
-    expect(FactoryBot.build(:category, name: 'example')).to_not be_valid
-  end
-
-  it 'is not valid without a description' do
-    expect(FactoryBot.build(:category, description: nil)).to_not be_valid
-  end
+  it { should validate_presence_of(:description) }
+  it { should validate_length_of(:description).is_at_most(1000) }
 end
