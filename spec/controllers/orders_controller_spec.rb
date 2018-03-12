@@ -46,7 +46,7 @@ describe OrdersController, type: :controller do
 
     it 'creates a new order with invalid attributes' do
       allow(controller).to receive(:current_user) { @user }
-      invalid_order = FactoryBot.build(:order, user_id: @user.id, order_details: {})
+      invalid_order = FactoryBot.build(:order, user_id: @user.id, order_details: "")
       post :create, params: { format: :json, order: invalid_order, order_details: invalid_order.order_details } 
       expect(response).to have_http_status(:unprocessable_entity)
     end

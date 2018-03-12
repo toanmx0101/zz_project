@@ -17,8 +17,8 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     order_details = {}
-    if params[:order_details].is_a?(Hash)
-      params[:order_details].each_pair do |key, value|
+    if params[:order_details].as_json.is_a?(Hash)
+        params[:order_details].each_pair do |key, value|
         order_details[key.to_i] = value.to_i
       end
     end
@@ -40,13 +40,13 @@ class OrdersController < ApplicationController
 
   # DELETE /orders/1
   # DELETE /orders/1.json
-  def destroy
-    @order.destroy
-    respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @order.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
 
@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def order_params
-    params.require(:order).permit(params[:order_details])
-  end
+  # def order_params
+  #   params.require(:order).permit(params[:order_details])
+  # end
 end
