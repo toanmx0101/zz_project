@@ -17,18 +17,22 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     order_details = {}
-    params[:order_details].each_pair do |key, value|
-      order_details[key.to_i] = value.to_i
+    if params[:order_details].is_a?(Hash)
+      params[:order_details].each_pair do |key, value|
+        order_details[key.to_i] = value.to_i
+      end
     end
     @order = Order.new(user_id: current_user.id, order_details: order_details)
     respond_to do |format|
       if @order.save
+        # Get all products in order, then send an email to user
         @products = Product.where(id: @order.order_details.keys)
         OrderNotifier.send_order_notifier(current_user, @order, @products).deliver
+
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
-        format.html { render :new }
+        format.html { render :index }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end

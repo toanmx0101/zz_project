@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   private
 
   def application_layout
-    user_signed_in? ? 'application' : 'signed_in_application'
+    user_signed_in? ? 'signed_in_application' : 'application'
   end
 end
