@@ -34,6 +34,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.7'
   gem 'factory_bot_rails', '~> 4.0', require: false
   gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
+  gem 'simplecov'
 end
 
 group :development do
