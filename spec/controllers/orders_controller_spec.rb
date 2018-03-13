@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe OrdersController, type: :controller do
-  
   context 'unauthenticated user' do
     it 'blocks unauthenticated access' do
       get :index
@@ -11,7 +10,7 @@ describe OrdersController, type: :controller do
 
   context 'authenticated user' do
     before(:each) do
-      Faker::UniqueGenerator.clear 
+      Faker::UniqueGenerator.clear
       @user = FactoryBot.create(:user)
       sign_in @user
       @order = FactoryBot.create(:order, user_id: @user.id)
@@ -46,8 +45,8 @@ describe OrdersController, type: :controller do
 
     it 'creates a new order with invalid attributes' do
       allow(controller).to receive(:current_user) { @user }
-      invalid_order = FactoryBot.build(:order, user_id: @user.id, order_details: "")
-      post :create, params: { format: :json, order: invalid_order, order_details: invalid_order.order_details } 
+      invalid_order = FactoryBot.build(:order, user_id: @user.id, order_details: '')
+      post :create, params: { format: :json, order: invalid_order, order_details: invalid_order.order_details }
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end

@@ -60,8 +60,12 @@ Metrics/MethodLength:
 
 Metrics/ClassLength:
   Enabled: false
+    - "**/*_spec.rb"
 
 Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/BlockLength:
   Enabled: false
 
 Metrics/AbcSize:

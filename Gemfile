@@ -25,6 +25,7 @@ gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'haml'
 gem 'faker'
+gem 'activeadmin'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

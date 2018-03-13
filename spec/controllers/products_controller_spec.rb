@@ -5,7 +5,7 @@ describe ProductsController, type: :controller do
     Faker::UniqueGenerator.clear
     @product = FactoryBot.create(:product)
   end
- 
+
   it 'populates an array of products' do
     get :index
     expect(assigns(:products)).to eq([@product])

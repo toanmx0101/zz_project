@@ -35,3 +35,4 @@ User.create email: 'zinza2@gmail.com', password: 'zinza123@', password_confirmat
   end
 end
 Rails.logger.info('End Seed')
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

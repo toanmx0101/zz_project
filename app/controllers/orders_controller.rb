@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: %i[show destroy]
+  before_action :set_order, only: %i[show]
   before_action :authenticate_user!
   # GET /orders
   # GET /orders.json
@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
   def create
     order_details = {}
     if params[:order_details].as_json.is_a?(Hash)
-        params[:order_details].each_pair do |key, value|
+      params[:order_details].each_pair do |key, value|
         order_details[key.to_i] = value.to_i
       end
     end
@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  # def order_params
-  #   params.require(:order).permit(params[:order_details])
-  # end
+  def order_params
+    params.require(:order).permit(params[:order_details])
+  end
 end
