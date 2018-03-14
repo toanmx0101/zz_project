@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  permit_params :name, :description, :price
+  permit_params :name, :description, :price, :category_id, :image
 
   index do
     selectable_column
@@ -11,6 +11,17 @@ ActiveAdmin.register Product do
     actions
   end
 
+  index as: :grid do |product|
+    div do
+      a href: admin_product_path(product) do
+        if !product.image_url.nil?
+          image_tag(product.image_url(:thumb))
+        end
+      end
+    end
+    a truncate(product.name), href: admin_product_path(product)
+  end
+
   filter :name
   filter :price
   filter :category
@@ -19,8 +30,10 @@ ActiveAdmin.register Product do
   form do |f|
     f.inputs do
       f.input :name
-      f.input :category_id
       f.input :description
+      f.input :price
+      f.input :category_id
+      f.file_field :image
     end
     f.actions
   end

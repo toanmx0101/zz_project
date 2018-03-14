@@ -11,4 +11,10 @@ Rails.application.routes.draw do
   resources :orders, except: %i[edit new]
   resources :cart, only: :index
   resources :categories, only: :index
+  resources :setup_language do
+    collection do
+      get 'vietnam'
+      get 'english'
+    end
+  end
 end

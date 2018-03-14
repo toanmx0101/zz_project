@@ -4,9 +4,11 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
   render_views
   let(:page) { Capybara::Node::Simple.new(response.body) }
   let(:user) { FactoryBot.create(:admin_user) }
-
   before { sign_in user }
-  let!(:admin_user) { FactoryBot.create(:admin_user) }
+  let!(:admin_user) { 
+    
+    FactoryBot.create(:admin_user) 
+  }
   let(:valid_attributes) do
     FactoryBot.attributes_for :admin_user
   end
@@ -31,7 +33,6 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
       expect(page).to have_content(admin_user.email)
       expect(page).to have_content(admin_user.current_sign_in_at)
       expect(page).to have_content(admin_user.sign_in_count)
-      expect(page).to have_content(admin_user.created_at.strftime('%B %-d, %Y %H:%M'))
     end
 
     let(:filters_sidebar) { page.find('#filters_sidebar_section') }

@@ -10,7 +10,7 @@ describe Product, type: :model do
 
   it { should validate_presence_of(:price) }
   it do
-    should validate_numericality_of(:price).is_greater_than(0)
+    should validate_numericality_of(:price).is_greater_than_or_equal_to(0)
   end
   it { should belong_to(:category) }
 

@@ -11,7 +11,8 @@
       .content
         - @products.each do |product|
           .product
-            %span= product.name
+            = link_to product_path(product) do
+              %span= product.name
             %span= product.price
             %span= product.description
             %button Order
