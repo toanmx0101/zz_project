@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  permit_params :name, :description, :price
+  permit_params :name, :description, :price, :category_id
 
   index do
     selectable_column
@@ -19,8 +19,8 @@ ActiveAdmin.register Product do
   form do |f|
     f.inputs do
       f.input :name
-      f.input :category_id
       f.input :description
+      f.input :price
     end
     f.actions
   end

@@ -1,5 +1,10 @@
 Rails.logger.info('Start Seed')
 Rails.logger.info('Category and Product Seed')
+# Delete all the things!
+AdminUser.delete_all
+Order.delete_all
+User.delete_all
+Product.delete_all
 
 10.times do
   category = Category.new

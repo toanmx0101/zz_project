@@ -22,14 +22,14 @@
 #
 
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  mount_uploader :avatar, AvatarUploader
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :orders, dependent: :destroy
-  mount_uploader :avatar, AvatarUploader
 
   validates_associated :orders
   validates :email, presence: true, length: { maximum: 255 }, format: { with: Devise.email_regexp }, uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { within: Devise.password_length }, allow_nil: true
+
+  validates_processing_of :avatar
 end

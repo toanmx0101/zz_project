@@ -1,0 +1,14 @@
+vi:
+  users:
+    sign_in:
+      login: 'Đăng nhập'
+      no_account_yet: 'Đăng ký mới'
+      email: 'Địa chỉ email'
+      password: 'Mật khẩu'
+      forgot_your_password: 'Quên mật khẩu'
+      keep_me_logged_in: 'Lưu địa chỉ email và mật khẩu'
+    signup:
+      signup: 'Đăng ký tài khoản'
+      email: 'Địa chỉ email'
+      password: 'Mật khẩu'
+      password_hint: 'Từ 6 ký tự trở lên'

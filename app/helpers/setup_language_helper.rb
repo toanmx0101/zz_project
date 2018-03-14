@@ -1,0 +1,2 @@
+module SetupLanguageHelper
+end
