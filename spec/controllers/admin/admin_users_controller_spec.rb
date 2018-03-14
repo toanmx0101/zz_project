@@ -5,10 +5,7 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
   let(:page) { Capybara::Node::Simple.new(response.body) }
   let(:user) { FactoryBot.create(:admin_user) }
   before { sign_in user }
-  let!(:admin_user) { 
-    
-    FactoryBot.create(:admin_user) 
-  }
+  let!(:admin_user) { FactoryBot.create(:admin_user) }
   let(:valid_attributes) do
     FactoryBot.attributes_for :admin_user
   end
@@ -146,7 +143,7 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
       end
       it 'does not change admin_user' do
         put :update, params: { id: admin_user.id, admin_user: invalid_attributes }
-        expect { response }.to_not change{ admin_user.reload.email }
+        expect { response }.to_not change { admin_user.reload.email }
       end
     end
   end

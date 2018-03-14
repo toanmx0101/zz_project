@@ -34,6 +34,6 @@ ActiveAdmin.register Order do
     end
   end
 
-  filter :user_id
+  filter :user
   filter :created_at
 end

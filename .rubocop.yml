@@ -73,3 +73,7 @@ Metrics/AbcSize:
 
 Style/RaiseArgs:
   EnforcedStyle: compact
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"

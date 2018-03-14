@@ -10,6 +10,7 @@ class SetupLanguageController < ApplicationController
   end
 
   private
+
   def set_session_and_redirect
     session[:locale] = I18n.locale
     redirect_back fallback_location: root_path

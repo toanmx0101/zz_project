@@ -14,9 +14,7 @@ ActiveAdmin.register Product do
   index as: :grid do |product|
     div do
       a href: admin_product_path(product) do
-        if !product.image_url.nil?
-          image_tag(product.image_url(:thumb))
-        end
+        image_tag(product.image_url(:thumb)) unless product.image_url.nil?
       end
     end
     a truncate(product.name), href: admin_product_path(product)

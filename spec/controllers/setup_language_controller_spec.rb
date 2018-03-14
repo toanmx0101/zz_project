@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SetupLanguageController, type: :controller do
   before(:each) do
-    request.env["HTTP_REFERER"] = root_path
+    request.env['HTTP_REFERER'] = root_path
   end
 
   it 'GET #english rederect back' do

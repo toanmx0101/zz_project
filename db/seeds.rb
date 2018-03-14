@@ -12,7 +12,7 @@ Rails.logger.info('Category and Product Seed')
     product.price = Faker::Commerce.price
     product.description = Faker::Lorem.sentence
     product.category = category
-    product.image = Faker::Avatar.image("my-own-slug", "50x50")
+    product.image = Faker::Avatar.image('my-own-slug', '50x50')
     product.save
   end
 end

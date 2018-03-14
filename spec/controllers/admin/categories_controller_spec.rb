@@ -53,7 +53,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
     end
   end
 
-   describe 'POST create' do
+  describe 'POST create' do
     context 'with valid params' do
       it 'creates a new category' do
         expect { post :create, params: { category: valid_attributes } }.to change(Category, :count).by(1)
