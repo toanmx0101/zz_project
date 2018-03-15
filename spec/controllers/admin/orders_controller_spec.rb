@@ -35,8 +35,20 @@ RSpec.describe Admin::OrdersController, type: :controller do
     let(:filters_sidebar) { page.find('#filters_sidebar_section') }
     it 'filter email exists' do
       get :index
-      expect(filters_sidebar).to have_css('label[for="q_user_input"]', text: 'Name')
-      expect(filters_sidebar).to have_css('input[name="q[user_id_eq]"]')
+      expect(filters_sidebar).to have_css('label[for="q_user_id"]', text: 'User')
+      expect(filters_sidebar).to have_css('select[name="q[user_id_eq]"]')
+    end
+  end
+
+  describe "GET show" do
+    before do
+      get :show, params: { id: order.id }
+    end
+    it 'returns http success' do
+      expect(response).to have_http_status(:success)
+    end
+    it 'assigns the person' do
+      expect(assigns(:order)).to eq(order)
     end
   end
 end

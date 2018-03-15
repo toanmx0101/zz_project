@@ -1,7 +1,9 @@
 %ul
   %li
-    = link_to 'Product', products_path
+    = link_to t('header.product'), products_path
   %li
-    = link_to 'Order', orders_path
+    = link_to t('header.cart'), cart_index_path
   %li
-    = link_to 'Account', edit_user_registration_path
+    = link_to t('header.order'), orders_path
+  %li
+    = link_to t('header.account'), edit_user_registration_path

@@ -1,6 +1,5 @@
 ActiveAdmin.register Product do
   permit_params :name, :description, :price, :category_id, :image
-
   index do
     selectable_column
     id_column
@@ -9,15 +8,6 @@ ActiveAdmin.register Product do
     column :description
     column :price
     actions
-  end
-
-  index as: :grid do |product|
-    div do
-      a href: admin_product_path(product) do
-        image_tag(product.image_url(:thumb)) unless product.image_url.nil?
-      end
-    end
-    a truncate(product.name), href: admin_product_path(product)
   end
 
   filter :name

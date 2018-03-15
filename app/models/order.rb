@@ -15,7 +15,6 @@ class Order < ApplicationRecord
   validates :order_details, presence: true
   serialize :order_details
   validate :order_details_is_valid
-  validates :total_price, presence: true
 
   def order_details_is_valid
     if !order_details.is_a?(Hash)

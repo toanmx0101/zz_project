@@ -5,7 +5,7 @@ class SetupLanguageController < ApplicationController
   end
 
   def vietnam
-    I18n.locale = :vn
+    I18n.locale = :vi
     set_session_and_redirect
   end
 

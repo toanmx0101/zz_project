@@ -15,9 +15,9 @@ ActiveAdmin.register User do
           link_to "##{order.id}", admin_order_path(order)
         end
         column("Date", sortable: :created_at) do |order|
-          pretty_format(order.created_at)
+          pretty_format(order.created_at.strftime("%B %e, %Y %H:%I"))
         end
-        column("Total price")
+        column("Total price") { |order| order.total_price }
       end
     end
     panel "Basic Information" do
@@ -29,9 +29,7 @@ ActiveAdmin.register User do
   sidebar "Order History", only: :show do
     attributes_table_for user do
       row("Total Orders") { user.orders.count }
-      row("Total Value") do
-        0
-      end
+      row("Total Value") { user.orders.sum(:total_price) }
     end
   end
   filter :email

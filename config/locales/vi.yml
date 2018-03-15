@@ -1,0 +1,19 @@
+vi:
+  header:
+    product: 'Sản phẩm'
+    cart: 'Giỏ hàng'
+    order: 'Đơn hàng đã đặt'
+    account: 'Tài khoản'
+
+  cart:
+    total_price: 'Tổng tiền'
+    quantity: 'Số lượng'
+    product_name: 'Tên sản phẩm'
+    product_in_cart: 'Sản phẩm trong giỏ hàng'
+
+  category: 
+    categories: 'Danh mục sản phẩm'
+
+  time:
+    formats:
+      long: "%Y-%m-%d %H:%M:%S"

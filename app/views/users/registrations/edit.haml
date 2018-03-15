@@ -9,7 +9,6 @@
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
-
   .div{style: 'display: grid; margin: 20px 0'}
     = f.label 'Update your avatar'
     - if !resource.avatar_url.nil?

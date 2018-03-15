@@ -1,11 +1,15 @@
 .container
-  %h3 Cac san pham trong gio hang
+  %h3 
+    = t 'cart.product_in_cart'
   = link_to 'Back', :back
   .c-cart
     .cart-header
-      %div Product name
-      %div Quantity
-      %div Total price
+      %div 
+        = t 'cart.product_name'
+      %div 
+        = t 'cart.quantity'
+      %div 
+        = t 'cart.total_price'
     .cart-list-item
   %h3.total-price Total: 0
   = render 'orders/form', order: Order.new
