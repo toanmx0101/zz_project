@@ -25,8 +25,12 @@ gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'haml'
 gem 'faker'
-gem 'activeadmin'
+gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'mini_magick'
+gem 'sidekiq'
+gem 'bourbon'
+gem 'sass'
+gem 'arctic_admin'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
