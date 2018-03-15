@@ -27,6 +27,7 @@ gem 'haml'
 gem 'faker'
 gem 'activeadmin'
 gem 'mini_magick'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

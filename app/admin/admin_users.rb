@@ -9,6 +9,7 @@ ActiveAdmin.register AdminUser do
     column :sign_in_count
     column :created_at
     actions
+    DailyReportJob.perform_later(current_admin_user, )
   end
 
   filter :email
