@@ -27,10 +27,10 @@ gem 'haml'
 gem 'faker'
 gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'mini_magick'
-gem 'sidekiq'
 gem 'bourbon'
 gem 'sass'
 gem 'arctic_admin'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

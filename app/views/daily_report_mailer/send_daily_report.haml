@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1 Tong hop doanh thu ngay hom nay #{Time.zone.now.strftime('%B %d, %Y')}
+    %ul
+      - @orders.each do |order|
+        %li
+          = order.id
+              $#{@order.total_price}
+    %div= link_to 'View details my order', @order
