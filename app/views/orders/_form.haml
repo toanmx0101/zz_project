@@ -21,19 +21,19 @@
     $.ajax({
       headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
       type: 'POST',
-      url: '/orders?&authenticity_token=' + $('meta[name="csrf-token"]').attr('content') ,
-      dataType: 'json',
+      url: '/orders',
+      dataType: 'html',
       data: {
         order: 1,
         order_details: generateOrderParams()
       },
-      success: function(resultsHtml) {
+      success: function(response) {
         $.removeCookie('cart');
         $('.cart-list-item').empty();
         $('.total-price').text("Total: 0");
         alert("Don hang cua ban da duoc gui len he thong! Vui long kiem tra email!");
       },
-      error: function () {
+      error: function (jqXHR, textStatus, errorThrown) {
         alert("Don hang cua ban chua duoc gui len he thong! Vui long thu lai");
       }
     });

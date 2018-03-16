@@ -1,8 +1,16 @@
 body {
   font-family: 'Montserrat', sans-serif;  
 }
+.container {
+  width: 1080px;
+  margin: 0 auto;
+}
+.wrapper {
+  width: 350px;
+  margin: 0 auto;
+}
 input {
-  padding: 9px 6px;
+  padding: 9px 12px!important;
   font-size: 19px;
   line-height: 16px;
   border-radius: 3px;
@@ -28,13 +36,10 @@ input {
   .r-header span {
     cursor: pointer;
     input {
-      background: #FFF;
       border: none;
     }
   }
   .price-sort {
-    background: #FFF;
-    box-shadow: 0 0 20px rgba(0,0,0,.1);
   }
 }
 .c-cart {
@@ -63,4 +68,13 @@ input {
 }
 .order-item {
   margin-top: 10px;
+}
+header {
+
+  ul {
+    display: flex;
+    li {
+      padding: 14px 20px;
+    }
+  }
 }

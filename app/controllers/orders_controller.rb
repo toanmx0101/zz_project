@@ -17,18 +17,20 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     order_details = {}
+    total_price = 0
     if params[:order_details].as_json.is_a?(Hash)
       params[:order_details].each_pair do |key, value|
         order_details[key.to_i] = value.to_i
+        total_price += Product.find(key.to_i).price * value.to_i if Product.exists?(key.to_i)
       end
     end
-    @order = Order.new(user_id: current_user.id, order_details: order_details)
+
+    @order = Order.new(user_id: current_user.id, order_details: order_details, total_price: total_price)
     respond_to do |format|
       if @order.save
         # Get all products in order, then send an email to user
         @products = Product.where(id: @order.order_details.keys)
         OrderNotifier.send_order_notifier(current_user, @order, @products).deliver
-
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -56,7 +58,7 @@ class OrdersController < ApplicationController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def order_params
-    params.require(:order).permit(params[:order_details])
-  end
+  # def order_params
+  #   params.require(:order).permit(params[:order_details])
+  # end
 end

@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @categories = Category.all
-    @products = Product.all.page(params[:page])
+    @products = Product.includes(:category).all.page(params[:page])
     @products = @products.category(params[:category]) if params[:category].present?
     return unless params[:sort_column].present? && Product.column_names.include?(params[:sort_column]) && (params[:sort_type] == 'DESC' || params[:sort_type] == 'ASC')
     @products = @products.order_by(params[:sort_column], params[:sort_type])
