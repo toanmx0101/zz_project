@@ -3,10 +3,11 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
-    %h1 Tong hop doanh thu ngay hom nay #{Time.zone.now.strftime('%B %d, %Y')}
+    %h1
+      = t('mail.daily_report.header') 
     %ul
       - @orders.each do |order|
         %li
           = order.id
-              $#{@order.total_price}
-    %div= link_to 'View details my order', @order
+        %li
+          = @order.total_price

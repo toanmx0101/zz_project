@@ -1,12 +1,15 @@
 = form_tag search_products_path, method: 'get' do
   = text_field_tag :q, params[:q], placeholder: 'Search product'
-  = submit_tag "Search"
+  = submit_tag t('product.search')
 .container
   .c-search-results
     .r-header
-      %span Name
-      %span Price
-      %span Description
+      %span
+        = t('product.title')
+      %span
+        = t('product.price')
+      %span
+        = t('product.description')
     .r-content
       .content
         - @products.each do |product|

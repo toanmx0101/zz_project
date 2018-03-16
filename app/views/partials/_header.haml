@@ -1,9 +1,16 @@
-%ul
-  %li
-    = link_to t('header.product'), products_path
-  %li
-    = link_to t('header.cart'), cart_index_path
-  %li
-    = link_to t('header.order'), orders_path
-  %li
-    = link_to t('header.account'), edit_user_registration_path
+%header 
+  %ul
+    %li
+      = link_to t('header.home'), root_path 
+    %li
+      = link_to t('header.product'), products_path
+    %li
+      = link_to t('header.cart'), cart_index_path
+    %li
+      = link_to t('header.order'), orders_path
+    %li
+      = link_to t('header.account'), edit_user_registration_path
+    %li
+      = link_to t('header.language')
+    %li
+      = link_to t('header.sign_out'),  destroy_user_session_path, method: :delete  

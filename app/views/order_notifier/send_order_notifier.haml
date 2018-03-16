@@ -3,13 +3,15 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
-    %h1 Cam on ban da dat hang tu website cua chung toi!
+    %h1
+      = t('mail.order_notifier.thankyou')
     %h3
-      Ma don hang: #{@order.id}
-    %p Don hang cua ban bao gom
+      = t('mail.order_notifier.order_code') + @order.id.to_s
+    %p
+      = t('mail.order_notifier.items_in_order')
     %ul
       - @products.each do |product|
         %li
           = product.name
               #{@order.order_details[product.id]} items
-    %div= link_to 'View details my order', @order
+    %div= link_to t('mail.order_notifier.view_details'), @order

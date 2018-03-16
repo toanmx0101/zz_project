@@ -1,9 +1,12 @@
 en:
   devise:
     confirmations:
+      resend: "Resend confirmation instructions"
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+      confirm_account: "Confirm my account"
+      confirm_mail_text: "You can confirm your account email through the link below:"
     failure:
       already_authenticated: "You are already signed in."
       inactive: "Your account is not activated yet."
@@ -44,6 +47,7 @@ en:
       updated: "Your password has been changed successfully. You are now signed in."
       updated_not_active: "Your password has been changed successfully."
     registrations:
+      sign_up: 'Sign Up'
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."
       signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
@@ -53,6 +57,8 @@ en:
       updated: "Your account has been updated successfully."
     sessions:
       login: 'Login'
+      password: 'Password'
+      remember_me: ' Remember me'
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
@@ -60,6 +66,8 @@ en:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
       unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+    forgot_password: 'Forgot your password?'
+    didnt_reveive_email_confirm: "Didn\'t receive confirmation instructions?"
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"

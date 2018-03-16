@@ -1,31 +1,30 @@
-%p#notice= notice
-%h1 Products
-= link_to 'See my cart', cart_index_path
-.container
-  .c-search-results
-    .r-header
-      %span Name
-      %span.js-price{:style => "position: relative;"}
-        Price
-        \#{render 'partials/sort_form', sort_column: 'price'}
-      %span.js-created-at{:style => "position: relative;"}
-        Publish at
-        \#{render 'partials/sort_form', sort_column: 'created_at'}
-      %span Category
-      %span Description
-    .r-content
-      .content
-        - @products.each do |product|
-          .product
-            %span.product-id{:style => "display: none"}= product.id
-            %span.product-name= product.name
-            %span.product-price= product.price
-            %span= product.created_at.strftime("%b  %d %Y")
-            %span= product.category.name
-            %button.js-order-btn Add to cart
-        = paginate @products
+%h1
+  = t('header.product')
+= link_to t('product.see_my_cart'), cart_index_path
+.c-search-results
+  .r-header
+    %span
+      = t('product.title')
+    %span.js-price{:style => "position: relative;"}
+      = t('product.price')
+      = render 'partials/sort_form', sort_column: 'price'
+    %span.js-created-at{:style => "position: relative;"}
+      = t('product.created_at')
+      = render 'partials/sort_form', sort_column: 'created_at'
+    %span
+      = t('product.category')
+  .r-content
+    .content
+      - @products.each do |product|
+        .product
+          %span.product-id{:style => "display: none"}= product.id
+          %span.product-name= product.name
+          %span.product-price= product.price
+          %span= product.created_at.strftime("%b  %d %Y")
+          %span= product.category.name
+          %button.js-order-btn Add to cart
+      = paginate @products
 %br/
-= paginate @products
 :javascript
   var cartValue = $.cookie("cart");
   

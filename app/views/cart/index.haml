@@ -1,7 +1,7 @@
 .container
-  %h3 
+  %h1
     = t 'cart.product_in_cart'
-  = link_to 'Back', :back
+  = link_to t('back'), :back
   .c-cart
     .cart-header
       %div 
@@ -11,7 +11,8 @@
       %div 
         = t 'cart.total_price'
     .cart-list-item
-  %h3.total-price Total: 0
+  %h3.total-price 
+    = t('cart.total_price') + ': 0' 
   = render 'orders/form', order: Order.new
 :javascript
   if (!$.isEmptyObject($.cookie("cart"))) {

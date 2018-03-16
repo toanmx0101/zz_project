@@ -1,6 +1,9 @@
 vi:
   devise:
     confirmations:
+      resend: Gửi lại hướng dẫn xác nhận
+      confirm_account: Xác nhận tài khoản
+      confirm_mail_text: Bạn có thể xác nhận email tài khoản của mình thông qua liên kết bên dưới
       confirmed: Xác nhận tài khoản thành công! Bạn hiện đang đăng nhập.
       send_instructions: Bạn sẽ nhận được email hướng dẫn xác nhận tài khoản trong vài phút nữa.
       send_paranoid_instructions: Nếu email của bạn có trong hệ thống, bạn sẽ nhận được email hướng dẫn xác nhận tài khoản trong một vài phút nữa.
@@ -39,6 +42,7 @@ vi:
       updated: Đổi mật khẩu thành công! Bạn hiện đang đăng nhập.
       updated_not_active: Mật khẩu đã được đổi thành công.
     registrations:
+      sign_up: 'Đăng kí tài khoản'
       destroyed: Tạm biệt! Tài khoản của bạn đã được xóa. Chúng tôi hy vọng sẽ sớm gặp lại bạn.
       signed_up: Xin chào! Bạn đã đăng ký thành công.
       signed_up_but_inactive: Bạn đã đăng ký thành công. Tuy nhiên, bạn cần phải kích hoạt tài khoản trước khi có thể đăng nhập được.
@@ -48,6 +52,8 @@ vi:
       updated: Cập nhật tài khoản thành công.
     sessions:
       login: 'Đăng nhập'
+      password: 'Mật khẩu'
+      remember_me: 'Ghi nhớ tôi'
       signed_in: Đăng nhập thành công.
       signed_out: Đăng xuất thành công.
       admin_user:
@@ -57,6 +63,8 @@ vi:
       send_instructions: Bạn sẽ nhận được email hướng dẫn cách mở khóa tài khoản trong vài phút nữa.
       send_paranoid_instructions: Nếu tài khoản của bạn tồn tại, bạn sẽ nhận được email hướng dẫn cách mở khóa tài khoản trong vài phút nữa.
       unlocked: Tài khoản của bạn đã được mở khóa thành công. Vui lòng đăng nhập để tiếp tục.
+    forgot_password: Quên mật khẩu
+    didnt_reveive_email_confirm: 'Bạn không nhận được thư xác nhận tài khoản?'
   errors:
     messages:
       already_confirmed: đã được xác nhận, vui lòng đăng nhập để tiếp tục.
