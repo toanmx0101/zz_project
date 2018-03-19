@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'home#home'
   devise_for :admin_users, ActiveAdmin::Devise.config
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { confirmations: 'users/confirmations' }
   resources :products do
@@ -17,4 +19,6 @@ Rails.application.routes.draw do
       get 'english'
     end
   end
+
+
 end
