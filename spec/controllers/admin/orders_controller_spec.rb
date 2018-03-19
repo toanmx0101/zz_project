@@ -40,7 +40,7 @@ RSpec.describe Admin::OrdersController, type: :controller do
     end
   end
 
-  describe "GET show" do
+  describe 'GET show' do
     before do
       get :show, params: { id: order.id }
     end

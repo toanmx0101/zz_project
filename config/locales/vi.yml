@@ -20,6 +20,7 @@ vi:
 
   mail:
     daily_report:
+      subject: 'Tổng hợp doanh thu trong ngày'
       header: 'Tổng hợp doanh thu trong ngày'
     order_notifier:
       thankyou: 'Cảm ơn bạn đã đặt hàng từ website của chúng tôi'

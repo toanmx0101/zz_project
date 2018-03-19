@@ -1,3 +1,4 @@
+
 Rails.logger.info('Start Seed')
 Rails.logger.info('Category and Product Seed')
 # Delete all the things!
@@ -5,6 +6,13 @@ AdminUser.delete_all
 Order.delete_all
 User.delete_all
 Product.delete_all
+10.times do
+  user = User.new
+  user.email = Faker::Internet.email
+  user.password = 'zinza123@'
+  user.password_confirmation = 'zinza123@'
+  user.save
+end
 
 10.times do
   category = Category.new
@@ -18,6 +26,7 @@ Product.delete_all
     product.description = Faker::Lorem.sentence
     product.category = category
     product.image = Faker::Avatar.image('my-own-slug', '50x50')
+    product.user = User.all.sample
     product.save
   end
 end
@@ -34,13 +43,13 @@ User.create email: 'zinza2@gmail.com', password: 'zinza123@', password_confirmat
   3.times do
     order = Order.new
     order.user = user
-    product_1 = Product.all.map(&:id).sample
-    product_2 = Product.all.map(&:id).sample
-    qty_1 = Faker::Number.between(1, 10)
-    qty_2 = Faker::Number.between(1, 10)
-    order.order_details = { product_1 => qty_1,
-                            product_2 => qty_2 }
-    order.total_price = (Product.find(product_1).price * qty_1) + (Product.find(product_2).price * qty_2)
+    first_product = Product.all.map(&:id).sample
+    second_product = Product.all.map(&:id).sample
+    first_qty = Faker::Number.between(1, 10)
+    second_qty = Faker::Number.between(1, 10)
+    order.order_details = { first_product => first_qty,
+                            second_product => second_qty }
+    order.total_price = (Product.find(first_product).price * first_qty) + (Product.find(second_product).price * second_qty)
     order.save
   end
 end

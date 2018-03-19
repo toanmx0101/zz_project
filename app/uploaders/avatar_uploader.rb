@@ -12,11 +12,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
   version :thumb do
     process resize_to_fill: [50, 50]
   end
-  # Add a white list of extensions which are allowed to be uploaded.
-  # For images you might use something like this:
-  def extension_whitelist
-    %w(jpg jpeg gif png)
-  end
 
   def size_range
     0..5.megabytes

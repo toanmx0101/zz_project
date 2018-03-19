@@ -8,4 +8,32 @@
         - product.errors.full_messages.each do |message|
           %li= message
   .actions
-    = form.submit
+    .contentx
+      .l-content
+        = form.label :name
+        = form.text_field :name
+        = form.label :description
+        = form.text_field :description
+        = form.label :price
+        = form.text_field :price
+        = form.label :category_id
+        = select("product", "category_id", Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true })
+        = form.submit
+      .r-content
+        %label.upload-image{}
+          %span Tải lên
+          %i.fas.fa-upload
+          = form.file_field :image, onchange: 'displaySelectedProductImage(this)', multiple: true, id: 'fileupload'
+        %div{style: 'margin-top: 12px;'}
+          %div{style: 'margin-right: 12px;'}
+            %img#uploaded-images
+:javascript
+  function displaySelectedProductImage(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#uploaded-images').attr('src', e.target.result)
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }

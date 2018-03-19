@@ -6,5 +6,6 @@ FactoryBot.define do
     f.price { Faker::Commerce.price }
     f.description { Faker::Lorem.sentence }
     f.category_id { FactoryBot.create(:category).id }
+    f.user_id { FactoryBot.create(:user).id }
   end
 end

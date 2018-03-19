@@ -16,8 +16,8 @@ class Order < ApplicationRecord
   serialize :order_details
   validate :order_details_is_valid
 
-  scope :orders_in_day, -> (date = Time.zone.now) { where(created_at: date.beginning_of_day..date.end_of_day) }
- 
+  scope :orders_in_day, ->(date = Time.zone.now) { where(created_at: date.beginning_of_day..date.end_of_day) }
+
   def order_details_is_valid
     if !order_details.is_a?(Hash)
       errors.add(:order_details, 'Order details is invalid')

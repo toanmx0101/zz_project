@@ -13,6 +13,7 @@ describe Product, type: :model do
     should validate_numericality_of(:price).is_greater_than_or_equal_to(0)
   end
   it { should belong_to(:category) }
+  it { should belong_to(:user) }
 
   it 'return list of product in category' do
     category = FactoryBot.create(:category)

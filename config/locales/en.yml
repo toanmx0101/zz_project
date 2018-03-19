@@ -20,6 +20,7 @@ en:
 
   mail:
     daily_report:
+      subject: 'The daily revenue report'
       header: 'The daily revenue report'
     order_notifier:
       thankyou: 'Thank you for ordering from our website'

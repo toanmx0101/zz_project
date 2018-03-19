@@ -15,6 +15,7 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require 'factory_bot_rails'
+require 'faker'
 require 'simplecov'
 SimpleCov.start 'rails'
 
@@ -96,4 +97,6 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  
+  Faker::Config.locale = I18n.locale
 end

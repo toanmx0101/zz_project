@@ -5,12 +5,8 @@ RSpec.describe Admin::UsersController, type: :controller do
   let(:page) { Capybara::Node::Simple.new(response.body) }
   let(:admin_user) { FactoryBot.create(:admin_user) }
   before { sign_in admin_user }
-  let!(:user) {
-    FactoryBot.create(:user) 
-  }
-  let!(:order) {
-    FactoryBot.create(:order, user_id: user.id) 
-  }
+  let!(:user) { FactoryBot.create(:user) }
+  let!(:order) { FactoryBot.create(:order, user_id: user.id) }
   describe 'GET index' do
     it 'returns http success' do
       get :index
@@ -37,7 +33,7 @@ RSpec.describe Admin::UsersController, type: :controller do
     end
   end
 
-  describe "GET show" do
+  describe 'GET show' do
     before do
       get :show, params: { id: user.id }
     end
@@ -50,8 +46,8 @@ RSpec.describe Admin::UsersController, type: :controller do
     it 'should render the expected columns' do
       get :show, params: { id: user.id }
       expect(page).to have_content(order.id)
-      expect(page).to have_content(order.created_at.strftime("%B %e, %Y %H:%I"))
-      expect(page).to have_content(order.total_price)
+      expect(page).to have_content(order.created_at.strftime('%B %e, %Y %H:%I'))
+      expect(page).to have_content(order.total_price.round(2))
     end
   end
 end

@@ -5,9 +5,7 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
   let(:page) { Capybara::Node::Simple.new(response.body) }
   let(:user) { FactoryBot.create(:admin_user) }
   before { sign_in user }
-  let!(:admin_user) { 
-    FactoryBot.create(:admin_user) 
-  }
+  let!(:admin_user) { FactoryBot.create(:admin_user) }
   let(:valid_attributes) do
     FactoryBot.attributes_for :admin_user
   end

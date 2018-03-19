@@ -33,6 +33,7 @@ gem 'arctic_admin'
 gem 'whenever', require: false
 gem 'sidekiq'
 gem 'ransack'
+gem 'pg'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

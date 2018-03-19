@@ -14,11 +14,13 @@
 class Product < ApplicationRecord
   mount_uploader :image, ProductImageUploader
   belongs_to :category
+  belongs_to :user
 
   validates :name, presence: true, length: { maximum: 100 }, uniqueness: true
   validates :description, presence: true, length: { maximum: 1000 }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :category_id, presence: true
+  validates :user_id, presence: true
 
   scope :category, ->(category) { where(category_id: category) }
   scope :search_like, ->(q) { where('name LIKE ?', q) }

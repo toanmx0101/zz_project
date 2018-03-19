@@ -1,4 +1,6 @@
-%h1
-  = t('product.new_product')
-= render 'form', product: @product
-= link_to t('back'), products_path
+.container
+  .insert-product
+    %h1
+      = t('product.new_product')
+    = render 'form', product: @product
+    = link_to t('back'), products_path

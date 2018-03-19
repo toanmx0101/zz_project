@@ -9,7 +9,7 @@ FactoryBot.define do
       qty_2 { Faker::Number.between(1, 10) }
     end
     f.user_id { FactoryBot.create(:user).id }
-    f.order_details { { product_1.id =>  qty_1, product_2.id => qty_2 } }
+    f.order_details { { product_1.id => qty_1, product_2.id => qty_2 } }
     f.total_price { (product_1.price * qty_1) + (product_2.price * qty_2) }
   end
 end

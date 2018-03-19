@@ -26,8 +26,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :orders, dependent: :destroy
+  has_many :products, dependent: :destroy
 
   validates_associated :orders
+  validates_associated :products
   validates :email, presence: true, length: { maximum: 255 }, format: { with: Devise.email_regexp }, uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { within: Devise.password_length }, allow_nil: true
 
