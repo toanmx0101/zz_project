@@ -10,19 +10,15 @@ ActiveAdmin.register Order do
 
   show do
     panel 'Invoice' do
-      products = Product.where(id: order.order_details.keys)
-      total_price = 0
-      products.each do |p|
-        total_price += p.price * order.order_details[p.id]
-      end
-      table_for(products) do |t|
-        t.column('Product') { |item| auto_link item }
-        t.column('Quantity') { |item| order.order_details[item.id] }
-        t.column('Price') { |item| number_to_currency item.price }
+      order_details = order.order_details.includes(:product)      
+      table_for(order_details) do |t|
+        t.column('Product') { |item| auto_link item.product }
+        t.column('Quantity') { |item| item.qty }
+        t.column('Price') { |item| number_to_currency item.product.price }
         tr class: 'odd' do
           td
           td 'Total:', style: 'text-align: right;'
-          td number_to_currency(total_price)
+          td number_to_currency(order.total_price)
         end
       end
     end

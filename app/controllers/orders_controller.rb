@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
-    @products = Product.where(id: @order.order_details.keys) unless @order.nil?
+    @order_details = @order.order_details.includes(:product) unless @order.nil?
   end
 
   # POST /orders
@@ -18,22 +18,34 @@ class OrdersController < ApplicationController
   def create
     order_details = {}
     total_price = 0
-    if params[:order_details].as_json.is_a?(Hash)
-      params[:order_details].each_pair do |key, value|
-        order_details[key.to_i] = value.to_i
-        total_price += Product.find(key.to_i).price * value.to_i if Product.exists?(key.to_i)
+    unless params[:order_details].nil?
+      if params[:order_details].as_json.is_a?(Hash)
+        params[:order_details].each_pair do |key, value|
+          if key.is_a?(Numeric) && value.is_a?(Numeric)
+            order_details[key.to_i] = value.to_i
+            total_price += Product.find(key.to_i).price * value.to_i if Product.exists?(key.to_i) && !current_user.product.include?(Product.find(key.to_i))
+          end
+        end
       end
-    end
 
-    @order = Order.new(user_id: current_user.id, order_details: order_details, total_price: total_price)
-    respond_to do |format|
-      if @order.save
-        # Get all products in order, then send an email to user
-        @products = Product.where(id: @order.order_details.keys)
-        OrderNotifier.send_order_notifier(current_user, @order, @products).deliver
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
-      else
+      @order = Order.new(user_id: current_user.id, total_price: total_price)
+      respond_to do |format|
+        if @order.save
+          # Get all products in order, then send an email to user
+          @products = Product.where(id: order_details.keys)
+          order_details.each_pair do |key, value|
+            @order.order_details.create(product_id: key, qty: value)
+          end
+          OrderNotifier.send_order_notifier(current_user, @order, @products).deliver
+          format.html { redirect_to @order, notice: 'Order was successfully created.' }
+          format.json { render :show, status: :created, location: @order }
+        else
+          format.html { render :index }
+          format.json { render json: @order.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
         format.html { render :index }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end

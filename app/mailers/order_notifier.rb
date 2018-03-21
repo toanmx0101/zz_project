@@ -5,6 +5,7 @@ class OrderNotifier < ApplicationMailer
   def send_order_notifier(user, order, products)
     @user = user
     @order = order
+    @order_details = @order.order_details
     @products = products
     mail(to: @user.email, subject: 'Thanks you for order form us')
   end

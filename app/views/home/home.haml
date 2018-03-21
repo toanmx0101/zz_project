@@ -1,3 +1,15 @@
 .container
   %h3
     User email: #{current_user.email}
+  = link_to 'New product', new_product_path
+  %h3 Cửa hàng của bạn
+  %br
+  %br
+  - if !@products.nil?
+    - @products.each do |product|
+      .product
+        %span.product-id{:style => "display: none"}= product.id
+        %span.product-name= product.name
+        %span.product-price= product.price
+        %span= product.created_at.strftime("%b  %d %Y")
+        %span= product.category.name

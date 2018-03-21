@@ -13,7 +13,11 @@ en:
     quantity: 'Quantity'
     product_name: 'Product name'
     product_in_cart: 'Product in your cart'
-
+    item: 'items'
+    amount: 'Amount'
+  
+  order: 'Your Order'
+    
   category: 
     categories: 'Category'
   back: 'Back'

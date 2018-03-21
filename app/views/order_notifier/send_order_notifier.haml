@@ -10,8 +10,12 @@
     %p
       = t('mail.order_notifier.items_in_order')
     %ul
-      - @products.each do |product|
+      - @order_details.each do |od|
         %li
-          = product.name
-              #{@order.order_details[product.id]} items
+          = @products.find(od.product_id).name  
+          = od.qty
+          = t('cart.item')
+      %li
+        = t('cart.total_price')
+        = @order.total_price
     %div= link_to t('mail.order_notifier.view_details'), @order

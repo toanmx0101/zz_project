@@ -13,6 +13,10 @@ vi:
     quantity: 'Số lượng'
     product_name: 'Tên sản phẩm'
     product_in_cart: 'Sản phẩm trong giỏ hàng'
+    item: 'sản phẩm'
+    amount: 'Thành tiền'
+
+  order: 'Đơn hàng của bạn'
 
   category: 
     categories: 'Danh mục sản phẩm'

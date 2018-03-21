@@ -5,12 +5,9 @@ body {
   width: 1080px;
   margin: 0 auto;
 }
-<<<<<<< HEAD
 input[type="file"] {
     display: none;
 }
-=======
->>>>>>> 9cdb32bf9a5a17208e12b6150c2f235cb3a4ee39
 .wrapper {
   width: 350px;
   margin: 0 auto;
@@ -116,3 +113,13 @@ header {
   padding: 14px 0;
   cursor: pointer;
 }
+.product span{
+    display: inline-block;
+    padding: 12px;
+    border-radius: 4px;
+    width: 20%;
+    i {
+      float: right;
+      margin-left: 14px;
+    }
+  }

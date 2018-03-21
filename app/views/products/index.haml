@@ -22,6 +22,8 @@
           %span.product-price= product.price
           %span= product.created_at.strftime("%b  %d %Y")
           %span= product.category.name
+          -# - if user_signed_in?
+          -#   - if current_user.products.
           %button.js-order-btn Add to cart
       = paginate @products
 %br/

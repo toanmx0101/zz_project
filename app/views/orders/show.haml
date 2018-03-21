@@ -2,24 +2,29 @@
 - if @order.nil?
   %h3 Don hang nay khong phai cua ban!
 - else
-  %h2 Don hang cua ban
   %h3
-    Don hang so #{@order.id}
+    = t('order')
+    = @order.id
   .c-cart
     .cart-header
-      %div Product name
-      %div So luong
-      %div Gia
-      %div Thanh tien
+      %div
+        = t('cart.product_name')
+      %div
+        = t('cart.quantity')
+      %div
+        = t('product.price')
+      %div
+        = t('cart.amount')
     .cart-list-item
       - total_price = 0
-      - @products.each do |product|
+      - @order_details.each do |od|
         %div
-          %div= product.name
-          %div= @order.order_details[product.id]
-          %div= product.price
-          %div= product.price * @order.order_details[product.id]
-        - total_price += product.price * @order.order_details[product.id]
+          %div= od.product.name
+          %div= od.qty
+          %div= od.product.price
+          %div= od.product.price * od.qty
+        - total_price += od.product.price * od.qty
   %h3.total-price
-    Tong tien: #{total_price}
-= link_to 'Back', orders_path
+    = t('cart.total_price') 
+    = total_price
+= link_to t('back'), orders_path
