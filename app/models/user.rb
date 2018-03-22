@@ -23,10 +23,17 @@
 
 class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :orders, dependent: :destroy
   has_many :products, dependent: :destroy
+  has_many :order_details, through: :orders
+  has_many :bought_products, through: :order_details, source: 'product'
+  has_many :bought_from, through: :bought_products, source: 'user'
+
+  # Mua san pham tu ai
+  has_many :sold_order_details, through: :products, source: 'order_details'
+  has_many :sold_orders, through: :sold_order_details, source: 'order'
+  has_many :buyers, through: :sold_orders, source: 'user'
 
   validates_associated :orders
   validates_associated :products
@@ -34,4 +41,6 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { within: Devise.password_length }, allow_nil: true
 
   validates_processing_of :avatar
+
+  scope :sold_for, ->(user) { where(id: Product.where(id: user.order_details.map(&:product_id)).map(&:user_id)) }
 end

@@ -11,7 +11,8 @@
 
 class Order < ApplicationRecord
   belongs_to :user
-  has_many :order_details
+  has_many :order_details, dependent: :destroy
+  has_many :bought_products, through: :order_details, source: 'product'
   validates :user_id, presence: true
   validates :total_price, presence: true
 

@@ -1,0 +1,11 @@
+.container
+  %h3
+    Who purchased my goods
+  %br
+  %br
+  - if !@user_purchased_orders.nil?
+    - @user_purchased_orders.each do |order_detail|
+      .product
+        %span.user= order_detail.order.user.email
+        %span.product-name= order_detail.product.name
+        %span.product-price= order_detail.qty

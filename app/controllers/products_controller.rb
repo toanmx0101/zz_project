@@ -9,7 +9,6 @@ class ProductsController < ApplicationController
     @categories = Category.all
     @products = Product.includes(:category).all.page(params[:page])
     @products = @products.category(params[:category]) if params[:category].present?
-    @products = @products.where.not(id: current_user.products) if user_signed_in?
     return unless params[:sort_column].present? && Product.column_names.include?(params[:sort_column]) && (params[:sort_type] == 'DESC' || params[:sort_type] == 'ASC')
     @products = @products.order_by(params[:sort_column], params[:sort_type])
   end

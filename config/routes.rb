@@ -19,6 +19,5 @@ Rails.application.routes.draw do
       get 'english'
     end
   end
-
-
+  get 'who_purchased', to: 'home#who_purchased'
 end

@@ -15,7 +15,7 @@ class Product < ApplicationRecord
   mount_uploader :image, ProductImageUploader
   belongs_to :category
   belongs_to :user
-  has_many :order_details
+  has_many :order_details, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 100 }, uniqueness: true
   validates :description, presence: true, length: { maximum: 1000 }

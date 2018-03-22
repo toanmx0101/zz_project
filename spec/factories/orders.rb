@@ -3,13 +3,14 @@ require 'faker'
 FactoryBot.define do
   factory :order do |f|
     transient do
-      product_1 { FactoryBot.create(:product) }
-      product_2 { FactoryBot.create(:product) }
-      qty_1 { Faker::Number.between(1, 10) }
-      qty_2 { Faker::Number.between(1, 10) }
+      first_product { FactoryBot.create(:product) }
+      second_product { FactoryBot.create(:product) }
+      first_qty { Faker::Number.between(1, 10) }
+      second_qty { Faker::Number.between(1, 10) }
+      first_o_details { FactoryBot.create(:order_detail, product_id: first_product.id, qty: first_qty) }
+      second_o_details { FactoryBot.create(:order_detail, product_id: second_product.id, qty: second_qty) }
     end
     f.user_id { FactoryBot.create(:user).id }
-    f.order_details { { product_1.id => qty_1, product_2.id => qty_2 } }
-    f.total_price { (product_1.price * qty_1) + (product_2.price * qty_2) }
+    f.total_price { (first_product.price * first_qty) + (second_product.price * second_qty) }
   end
 end

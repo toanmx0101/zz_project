@@ -1,7 +1,9 @@
 .container
   %h3
     User email: #{current_user.email}
-  = link_to 'New product', new_product_path
+  .nab-bar-user
+    = link_to 'New product', new_product_path
+    = link_to 'Who purchase my goods', who_purchased_path, style: 'margin-left: 30px'
   %h3 Cửa hàng của bạn
   %br
   %br

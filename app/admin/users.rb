@@ -9,6 +9,20 @@ ActiveAdmin.register User do
     actions
   end
   show do
+    panel 'Basic Information' do
+      table_for(user) do
+        column :email
+      end
+    end
+    panel 'Store' do
+      table_for(user.products) do
+        column('Product', sortable: :id) do |product|
+          link_to "##{product.id}", admin_product_path(product)
+        end
+        column :name
+        column :price
+      end
+    end
     panel 'Order History' do
       table_for(user.orders) do
         column('Order', sortable: :id) do |order|
@@ -20,8 +34,12 @@ ActiveAdmin.register User do
         column('total_price') { |order| order.total_price.round(2) }
       end
     end
-    panel 'Basic Information' do
-      table_for(user) do
+    panel 'Purchased from' do
+      solder_for = user.bought_from
+      table_for(solder_for) do
+        column('User', sortable: :id) do |solder|
+          link_to "##{solder.id}", admin_user_path(solder)
+        end
         column :email
       end
     end

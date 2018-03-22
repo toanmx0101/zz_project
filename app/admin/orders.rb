@@ -10,10 +10,10 @@ ActiveAdmin.register Order do
 
   show do
     panel 'Invoice' do
-      order_details = order.order_details.includes(:product)      
+      order_details = order.order_details.includes(:product)
       table_for(order_details) do |t|
         t.column('Product') { |item| auto_link item.product }
-        t.column('Quantity') { |item| item.qty }
+        t.column(&:qty)
         t.column('Price') { |item| number_to_currency item.product.price }
         tr class: 'odd' do
           td

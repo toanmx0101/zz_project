@@ -38,15 +38,17 @@ describe OrdersController, type: :controller do
 
     it 'creates a new order with valid attributes' do
       allow(controller).to receive(:current_user) { @user }
-      order = FactoryBot.create(:order, user_id: @user.id)
-      post :create, params: { format: :json, order: order, order_details: order.order_details }
+      first_product = FactoryBot.create(:product)
+      order = FactoryBot.create(:order, user_id: @user.id, total_price: first_product.price)
+      valid_order_details_params = { first_product.id => 1 }
+      post :create, params: { format: :json, order: order, order_details: valid_order_details_params }
       expect(response).to have_http_status(:success)
     end
 
     it 'creates a new order with invalid attributes' do
       allow(controller).to receive(:current_user) { @user }
-      invalid_order = FactoryBot.build(:order, user_id: @user.id, order_details: nil)
-      post :create, params: { format: :json, order: invalid_order, order_details: invalid_order.order_details }
+      invalid_order_details_params = nil
+      post :create, params: { format: :json, order: invalid_order_details_params, order_details: invalid_order_details_params }
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
